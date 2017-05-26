@@ -1,5 +1,5 @@
 # appium-controller
-Starts and stops appium in the background. Runs on mac or windows.
+Starts and stops appium in the background programmatically. Runs on mac or windows.
 
 ## Usage
 ### From Node/JS
