@@ -1,0 +1,40 @@
+{
+  "name": "appium-controller",
+  "version": "1.0.0",
+  "description": "Starts and stops appium in the background",
+  "main": "dist/index.js",
+  "types": "./src/index.ts",
+  "build": "tsc",
+  "bin": {
+    "appium-controller": "dist/bin/appium-controller.js"
+  },
+  "scripts": {
+    "prepublish": "tsc",
+    "test": "node dist/bin/appium-controller.js --start"
+  },
+  "keywords": [
+    "appium",
+    "start",
+    "stop",
+    "background",
+    "mac",
+    "windows",
+    "programmatically"
+  ],
+  "author": "Aaron Briel <aaronbriel@gmail.com> (http://euronymo.com)",
+  "license": "ISC",
+  "dependencies": {
+    "path": "0.12.7",
+    "fs": "0.0.1-security",
+    "os": "0.1.1",
+    "shelljs": "0.7.7",
+    "child_process": "1.0.2",
+    "http": "0.0.0",
+    "yargs": "^8.0.1",
+    "@types/node": "^7.0.22"
+  },
+  "devDependencies": {
+    "typescript": "^2.3.3",
+    "@types/yargs": "^6.6.0"
+  }
+}

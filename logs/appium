@@ -1,0 +1,11 @@
+[Appium] Welcome to Appium v1.6.4
+[Appium] Appium REST http interface listener started on 0.0.0.0:4723
+[HTTP] --> GET /wd/hub/status {}
+[debug] [MJSONWP] Calling AppiumDriver.getStatus() with args: []
+[debug] [MJSONWP] Responding to client with driver.getStatus() result: {"build":{"version":"1.6.4","revision":null}}
+[HTTP] <-- GET /wd/hub/status 200 16 ms - 83 
+[HTTP] --> GET /wd/hub/status {}
+[debug] [MJSONWP] Calling AppiumDriver.getStatus() with args: []
+[debug] [MJSONWP] Responding to client with driver.getStatus() result: {"build":{"version":"1.6.4","revision":null}}
+[HTTP] <-- GET /wd/hub/status 200 10 ms - 83 
+[Appium] Received SIGTERM - shutting down
