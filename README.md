@@ -1,11 +1,13 @@
 # appium-controller
-Starts and stops appium in the background
+Starts and stops appium in the background. Runs on mac or windows.
 
 ## Usage
 ### From Node/JS
+
 ```
   let appiumController = require('appium-controller')
 
+  //start appium
   appiumController.startUp({
     host:'0.0.0.0',
     port:'4723'
