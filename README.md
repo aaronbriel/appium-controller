@@ -4,14 +4,6 @@ Starts and stops appium in the background
 ## Usage
 ### From Node/JS
 ```
-  var autoEmulate = require('auto-emulate);
-
-       autoEmulate.emulateAndroid({
-         name: 'avd_device_name'
-       });
-
-  autoEmulate.waitForAndroidEmulator();
-
   let appiumController = require('appium-controller')
 
   appiumController.startUp({
@@ -36,4 +28,6 @@ Starts and stops appium in the background
 ```
   appium-controller --start
 
-  Run appium-controller --help for full list of options.
+```
+
+Run 'appium-controller --help' for full list of options.
