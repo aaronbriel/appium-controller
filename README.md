@@ -14,7 +14,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
   });
 
   //or
-  appiumController.startUp({});
+  appiumController.startUp();
 
 
   appiumController.shutDown({
@@ -22,7 +22,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
   });
 
   //or
-  appiumController.shutDown({});
+  appiumController.shutDown();
 
 ```
 

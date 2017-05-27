@@ -23,6 +23,10 @@
   ],
   "author": "Aaron Briel <aaronbriel@gmail.com> (http://euronymo.com)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aaronbriel/appium-controller.git"
+  },
   "dependencies": {
     "path": "0.12.7",
     "fs": "0.0.1-security",
@@ -30,11 +34,11 @@
     "shelljs": "0.7.7",
     "child_process": "1.0.2",
     "http": "0.0.0",
-    "yargs": "^8.0.1",
-    "@types/node": "^7.0.22"
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "typescript": "^2.3.3",
+    "@types/node": "^7.0.22",
     "@types/yargs": "^6.6.0"
   }
 }
