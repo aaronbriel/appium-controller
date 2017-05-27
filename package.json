@@ -1,6 +1,6 @@
 {
   "name": "appium-controller",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Starts and stops appium in the background",
   "main": "./dist/index.js",
   "types": "./src/index.ts",
