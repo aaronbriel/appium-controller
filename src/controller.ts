@@ -6,16 +6,16 @@ let childProcess = require('child_process'),
     shell = require('shelljs'),
     retries = 0;
 
-export const startUp = (options?: any) => {
+export const startAppium = (options?: any) => {
 
     let host = options.host !== undefined ? options.host : '0.0.0.0',
         port = options.port !== undefined ? options.port : '4723',
-        stopAppium = options.stopAppium !== undefined ? options.stopAppium : true,
+        shutdown = options.shutdown !== undefined ? options.shutdown : true,
         logDir = options.logDir !== undefined ? options.logDir : 'logs',
         appiumOptions = ['-a', host, '-p', port];
 
-    if (stopAppium)
-        shutDown({port:port});
+    if (shutdown)
+        stopAppium({port:port});
 
     console.log('Starting appium...');
 
@@ -69,7 +69,7 @@ export const statusCheck = (host: string, port: string, child: any, statusCode: 
     }
 };
 
-export const shutDown = (options?:any) => {
+export const stopAppium = (options?:any) => {
 
     let platform = os.platform(),
         msg = 'appium is shutdown',

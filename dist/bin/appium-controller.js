@@ -46,7 +46,7 @@ const args = yargs
     .help('help', 'displays help')
     .argv;
 if (args.start !== undefined)
-    controller_1.startUp({ host: args.h, port: args.p, stopAppium: args.s, logDir: args.l });
+    controller_1.startAppium({ host: args.h, port: args.p, shutdown: args.s, logDir: args.l });
 if (args.stop !== undefined)
-    controller_1.shutDown({ port: args.p });
+    controller_1.stopAppium({ port: args.p });
 //# sourceMappingURL=appium-controller.js.map

@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 import * as yargs from 'yargs';
-import { startUp, shutDown } from './../controller';
+import { startAppium, stopAppium } from './../controller';
 
 const args = yargs
     .usage('Usage: $0 -h [host] -p [port] -s [shutdown] -wd [wdPath] -l [logpath] -start -stop')
@@ -46,8 +46,8 @@ const args = yargs
     .argv;
 
 if (args.start !== undefined)
-    startUp({host:args.h, port:args.p, stopAppium:args.s, logDir:args.l});
+    startAppium({host:args.h, port:args.p, shutdown:args.s, logDir:args.l});
 
 if (args.stop !== undefined)
-    shutDown({port:args.p});
+    stopAppium({port:args.p});
 

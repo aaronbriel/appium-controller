@@ -2,7 +2,7 @@
   "name": "appium-controller",
   "version": "1.0.0",
   "description": "Starts and stops appium in the background",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "types": "./src/index.ts",
   "build": "tsc",
   "bin": {

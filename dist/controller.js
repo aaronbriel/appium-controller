@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let childProcess = require('child_process'), fs = require('fs'), path = require('path'), http = require('http'), os = require('os'), shell = require('shelljs'), retries = 0;
-exports.startUp = (options) => {
-    let host = options.host !== undefined ? options.host : '0.0.0.0', port = options.port !== undefined ? options.port : '4723', stopAppium = options.stopAppium !== undefined ? options.stopAppium : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', appiumOptions = ['-a', host, '-p', port];
-    if (stopAppium)
-        exports.shutDown({ port: port });
+exports.startAppium = (options) => {
+    let host = options.host !== undefined ? options.host : '0.0.0.0', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', appiumOptions = ['-a', host, '-p', port];
+    if (shutdown)
+        exports.stopAppium({ port: port });
     console.log('Starting appium...');
     if (!fs.existsSync(logDir))
         fs.mkdirSync(logDir);
@@ -44,7 +44,7 @@ exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status',
         }, 1000);
     }
 };
-exports.shutDown = (options) => {
+exports.stopAppium = (options) => {
     let platform = os.platform(), msg = 'appium is shutdown', port = options.port !== undefined ? options.port : '4723';
     if (platform.indexOf('darwin') > -1 || platform.indexOf('linux') > -1) {
         shell.exec('pkill -f appium');
