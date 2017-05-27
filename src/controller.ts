@@ -11,7 +11,8 @@ export const startUp = (options?: any) => {
     let host = options.host !== undefined ? options.host : '0.0.0.0',
         port = options.port !== undefined ? options.port : '4723',
         stopAppium = options.stopAppium !== undefined ? options.stopAppium : true,
-        logDir = options.logDir !== undefined ? options.logDir : 'logs';
+        logDir = options.logDir !== undefined ? options.logDir : 'logs',
+        appiumOptions = ['-a', host, '-p', port];
 
     console.log('Starting appium...');
 
@@ -26,6 +27,7 @@ export const startUp = (options?: any) => {
 
     let child = childProcess.spawn(
         'appium',
+        appiumOptions,
         {
             detached: true,
             stdio: ['ignore', out, er]
@@ -56,7 +58,7 @@ export const statusCheck = (host: string, port: string, child: any, statusCode: 
     });
 
     if (statusCode === 200) {
-        console.log('appium is running!');
+        console.log('appium is running on ' + host + ':' + port + '!');
         child.unref();
         retries = 0;
         statusCode = 0;

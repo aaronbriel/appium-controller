@@ -29,7 +29,11 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
 ### From CLI
 ```
   appium-controller --start
+  appium-controller --start -h 127.0.0.1 -p 4724
+  appium-controller --stop
+  appium-controller --stop -p 4724
 
 ```
+
 
 Run 'appium-controller --help' for full list of options.
