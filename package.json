@@ -9,7 +9,8 @@
     "appium-controller": "dist/bin/appium-controller.js"
   },
   "scripts": {
-    "prepublish": "tsc",
+    "build": "tsc",
+    "prepublish": "npm run build",
     "test": "node dist/bin/appium-controller.js --start"
   },
   "keywords": [
