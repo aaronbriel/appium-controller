@@ -7,21 +7,21 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
 ```
   let appiumController = require('appium-controller')
 
-  //start appium
+  //start appium with options
   appiumController.startUp({
-    host:'0.0.0.0',
-    port:'4723'
+    host:'127.0.0.1',
+    port:'4724'
   });
 
-  //or
+  //or with default host:0.0.0.0, port:4723
   appiumController.startUp();
 
-
+  //shutdown with options
   appiumController.shutDown({
-    port:'4723'
+    port:'4724'
   });
 
-  //or
+  //or with default port:4723
   appiumController.shutDown();
 
 ```
