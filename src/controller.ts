@@ -14,10 +14,10 @@ export const startUp = (options?: any) => {
         logDir = options.logDir !== undefined ? options.logDir : 'logs',
         appiumOptions = ['-a', host, '-p', port];
 
-    console.log('Starting appium...');
-
     if (stopAppium)
         shutDown({port:port});
+
+    console.log('Starting appium...');
 
     if (!fs.existsSync(logDir))
         fs.mkdirSync(logDir);
@@ -64,7 +64,6 @@ export const statusCheck = (host: string, port: string, child: any, statusCode: 
         statusCode = 0;
     } else {
         setTimeout(function () {
-            console.log('appium status:' + statusCode);
             statusCheck(host, port, child, statusCode);
         }, 1000)
     }

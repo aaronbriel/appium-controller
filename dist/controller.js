@@ -3,17 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let childProcess = require('child_process'), fs = require('fs'), path = require('path'), http = require('http'), os = require('os'), shell = require('shelljs'), retries = 0;
 exports.startUp = (options) => {
     let host = options.host !== undefined ? options.host : '0.0.0.0', port = options.port !== undefined ? options.port : '4723', stopAppium = options.stopAppium !== undefined ? options.stopAppium : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', appiumOptions = ['-a', host, '-p', port];
-    if (options.appium !== undefined)
-        appiumOptions += options.appium;
-    console.log('Starting appium...');
     if (stopAppium)
         exports.shutDown({ port: port });
+    console.log('Starting appium...');
     if (!fs.existsSync(logDir))
         fs.mkdirSync(logDir);
     let out = fs.openSync(path.join(logDir, 'appium'), 'w');
     let er = fs.openSync(path.join(logDir, 'appium-error'), 'w');
     let child = childProcess.spawn('appium', appiumOptions, {
-        //args: appiumOptions,
         detached: true,
         stdio: ['ignore', out, er]
     }).on('error', (err) => { throw err; });
@@ -43,7 +40,6 @@ exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status',
     }
     else {
         setTimeout(function () {
-            console.log('appium status:' + statusCode);
             exports.statusCheck(host, port, child, statusCode);
         }, 1000);
     }
