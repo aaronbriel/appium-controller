@@ -14,7 +14,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
   });
 
   //or with default host:0.0.0.0, port:4723
-  appiumController.startAppium({});
+  appiumController.startAppium();
 
   //shutdown with options
   appiumController.stopAppium({
@@ -22,7 +22,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
   });
 
   //or with default port:4723
-  appiumController.stopAppium({});
+  appiumController.stopAppium();
 
 ```
 
