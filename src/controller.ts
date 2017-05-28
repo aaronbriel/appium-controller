@@ -8,6 +8,8 @@ let childProcess = require('child_process'),
 
 export const startAppium = (options?: any) => {
 
+    options = options || {};
+
     let host = options.host !== undefined ? options.host : '0.0.0.0',
         port = options.port !== undefined ? options.port : '4723',
         shutdown = options.shutdown !== undefined ? options.shutdown : true,
@@ -70,6 +72,8 @@ export const statusCheck = (host: string, port: string, child: any, statusCode: 
 };
 
 export const stopAppium = (options?:any) => {
+
+    options = options || {};
 
     let platform = os.platform(),
         msg = 'appium is shutdown',
