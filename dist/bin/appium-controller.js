@@ -15,10 +15,10 @@ const args = yargs
 })
     .option('host', {
     alias: 'h',
-    describe: 'host (defaults to 0.0.0.0)',
+    describe: 'host (defaults to localhost)',
     type: 'string'
 })
-    .default('host', '0.0.0.0')
+    .default('host', 'localhost')
     .option('port', {
     alias: 'p',
     describe: 'port (defaults to 4723)',

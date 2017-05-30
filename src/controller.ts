@@ -10,14 +10,21 @@ export const startAppium = (options?: any) => {
 
     options = options || {};
 
-    let host = options.host !== undefined ? options.host : '0.0.0.0',
+    let host = options.host !== undefined ? options.host : 'localhost',
         port = options.port !== undefined ? options.port : '4723',
         shutdown = options.shutdown !== undefined ? options.shutdown : true,
         logDir = options.logDir !== undefined ? options.logDir : 'logs',
-        appiumOptions = ['-a', host, '-p', port];
+        appiumOptions = ['-a', host, '-p', port],
+        platform = os.platform(),
+        command = 'appium.cmd';
 
     if (shutdown)
         stopAppium({port:port});
+
+    if (platform.indexOf('darwin') > - 1 ||
+        platform.indexOf('linux') > -1) {
+        command = 'appium';
+    }
 
     console.log('Starting appium...');
 
@@ -28,7 +35,7 @@ export const startAppium = (options?: any) => {
     let er = fs.openSync(path.join(logDir, 'appium-error'), 'w');
 
     let child = childProcess.spawn(
-        'appium',
+        command,
         appiumOptions,
         {
             detached: true,
@@ -79,7 +86,8 @@ export const stopAppium = (options?:any) => {
         msg = 'appium is shutdown',
         port = options.port !== undefined ? options.port : '4723';
 
-    if (platform.indexOf('darwin') > - 1 || platform.indexOf('linux') > -1) {
+    if (platform.indexOf('darwin') > - 1 ||
+        platform.indexOf('linux') > -1) {
         shell.exec('pkill -f appium');
         console.log(msg)
     } else {

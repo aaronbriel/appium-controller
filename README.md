@@ -9,11 +9,10 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
 
   //start appium with options
   appiumController.startAppium({
-    host:'127.0.0.1',
     port:'4724'
   });
 
-  //or with default host:0.0.0.0, port:4723
+  //or with default host:localhost, port:4723
   appiumController.startAppium();
 
   //shutdown with options
@@ -29,7 +28,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
 ### From CLI
 ```
   appium-controller --start
-  appium-controller --start -h 127.0.0.1 -p 4724
+  appium-controller --start -h localhost -p 4724
   appium-controller --stop
   appium-controller --stop -p 4724
 

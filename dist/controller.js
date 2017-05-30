@@ -3,15 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let childProcess = require('child_process'), fs = require('fs'), path = require('path'), http = require('http'), os = require('os'), shell = require('shelljs'), retries = 0;
 exports.startAppium = (options) => {
     options = options || {};
-    let host = options.host !== undefined ? options.host : '0.0.0.0', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', appiumOptions = ['-a', host, '-p', port];
+    let host = options.host !== undefined ? options.host : 'localhost', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', appiumOptions = ['-a', host, '-p', port], platform = os.platform(), command = 'appium.cmd';
     if (shutdown)
         exports.stopAppium({ port: port });
+    if (platform.indexOf('darwin') > -1 ||
+        platform.indexOf('linux') > -1) {
+        command = 'appium';
+    }
     console.log('Starting appium...');
     if (!fs.existsSync(logDir))
         fs.mkdirSync(logDir);
     let out = fs.openSync(path.join(logDir, 'appium'), 'w');
     let er = fs.openSync(path.join(logDir, 'appium-error'), 'w');
-    let child = childProcess.spawn('appium', appiumOptions, {
+    let child = childProcess.spawn(command, appiumOptions, {
         detached: true,
         stdio: ['ignore', out, er]
     }).on('error', (err) => { throw err; });
@@ -48,7 +52,8 @@ exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status',
 exports.stopAppium = (options) => {
     options = options || {};
     let platform = os.platform(), msg = 'appium is shutdown', port = options.port !== undefined ? options.port : '4723';
-    if (platform.indexOf('darwin') > -1 || platform.indexOf('linux') > -1) {
+    if (platform.indexOf('darwin') > -1 ||
+        platform.indexOf('linux') > -1) {
         shell.exec('pkill -f appium');
         console.log(msg);
     }
