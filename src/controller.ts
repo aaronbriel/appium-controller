@@ -51,7 +51,7 @@ export const startAppium = (options?: any) => {
 };
 
 export const statusCheck = (host: string, port: string, child: any, statusCode: number,
-    wdPath = '/wd/hub/status', maxRetries = 40) => {
+    wdPath = '/wd/hub/status', maxRetries = 80) => {
 
     retries += 1;
 
