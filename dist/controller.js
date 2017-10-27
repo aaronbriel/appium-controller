@@ -3,13 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let childProcess = require('child_process'), fs = require('fs'), path = require('path'), http = require('http'), os = require('os'), shell = require('shelljs'), retries = 0;
 exports.startAppium = (options) => {
     options = options || {};
-    let host = options.host !== undefined ? options.host : 'localhost', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', appiumOptions = ['-a', host, '-p', port], platform = os.platform(), command = 'appium.cmd';
+    let host = options.host !== undefined ? options.host : 'localhost', port = options.port !== undefined ? options.port : '4723', shutdown = options.shutdown !== undefined ? options.shutdown : true, logDir = options.logDir !== undefined ? options.logDir : 'logs', defaultCapabilities = options.defaultCapabilities, appiumOptions = ['-a', host, '-p', port], platform = os.platform(), command = 'appium.cmd';
     if (shutdown)
         exports.stopAppium({ port: port });
     if (platform.indexOf('darwin') > -1 ||
         platform.indexOf('linux') > -1) {
         command = 'appium';
     }
+    if (defaultCapabilities)
+        appiumOptions.push('--default-capabilities', defaultCapabilities);
     console.log('Starting appium...');
     if (!fs.existsSync(logDir))
         fs.mkdirSync(logDir);
@@ -21,7 +23,7 @@ exports.startAppium = (options) => {
     }).on('error', (err) => { throw err; });
     exports.statusCheck(host, port, child, 0);
 };
-exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status', maxRetries = 20) => {
+exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status', maxRetries = 40) => {
     retries += 1;
     http.get({
         host: host,

@@ -10,6 +10,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
   //start appium with options
   appiumController.startAppium({
     port:'4724'
+    defaultCapabilities:'{"deviceName": "iPhone Simulator"}'
   });
 
   //or with default host:localhost, port:4723
@@ -28,7 +29,7 @@ Starts and stops appium in the background programmatically. Runs on mac or windo
 ### From CLI
 ```
   appium-controller --start
-  appium-controller --start -h localhost -p 4724
+  appium-controller --start -p 4724 --dc '{"deviceName": "iPhone Simulator"}'
   appium-controller --stop
   appium-controller --stop -p 4724
 

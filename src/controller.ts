@@ -14,17 +14,21 @@ export const startAppium = (options?: any) => {
         port = options.port !== undefined ? options.port : '4723',
         shutdown = options.shutdown !== undefined ? options.shutdown : true,
         logDir = options.logDir !== undefined ? options.logDir : 'logs',
+        defaultCapabilities = options.defaultCapabilities,
         appiumOptions = ['-a', host, '-p', port],
         platform = os.platform(),
         command = 'appium.cmd';
 
     if (shutdown)
-        stopAppium({port:port});
+        stopAppium({port: port});
 
-    if (platform.indexOf('darwin') > - 1 ||
+    if (platform.indexOf('darwin') > -1 ||
         platform.indexOf('linux') > -1) {
         command = 'appium';
     }
+
+    if (defaultCapabilities)
+        appiumOptions.push('--default-capabilities', defaultCapabilities);
 
     console.log('Starting appium...');
 

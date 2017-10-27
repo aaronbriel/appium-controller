@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const yargs = require("yargs");
 const controller_1 = require("./../controller");
 const args = yargs
-    .usage('Usage: $0 -h [host] -p [port] -s [shutdown] -wd [wdPath] -l [logpath] -start -stop')
+    .usage('Usage: $0 -h [host] -p [port] -s [shutdown] -wd [wdPath] -l [logpath] -dc [defaultCapabilities] -start -stop')
     .option('start', {
     describe: 'starts appium',
     type: 'string'
@@ -43,10 +43,15 @@ const args = yargs
     type: 'string'
 })
     .default('logDir', 'logs')
+    .option('defaultCapabilities', {
+    alias: 'dc',
+    describe: 'the appium --default-capabilities CLI flag (see appium github repo for more info)',
+    type: 'string'
+})
     .help('help', 'displays help')
     .argv;
 if (args.start !== undefined)
-    controller_1.startAppium({ host: args.h, port: args.p, shutdown: args.s, logDir: args.l });
+    controller_1.startAppium({ host: args.h, port: args.p, shutdown: args.s, logDir: args.l, defaultCapabilities: args.dc });
 if (args.stop !== undefined)
     controller_1.stopAppium({ port: args.p });
 //# sourceMappingURL=appium-controller.js.map
