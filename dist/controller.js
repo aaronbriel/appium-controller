@@ -23,7 +23,7 @@ exports.startAppium = (options) => {
     }).on('error', (err) => { throw err; });
     exports.statusCheck(host, port, child, 0);
 };
-exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status', maxRetries = 40) => {
+exports.statusCheck = (host, port, child, statusCode, wdPath = '/wd/hub/status', maxRetries = 80) => {
     retries += 1;
     http.get({
         host: host,
